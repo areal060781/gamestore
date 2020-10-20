@@ -149,5 +149,5 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/django
 
 .idea
-gamestore/gamestore/*.sqlite3
-gamestore/node_modules
+*.sqlite3
+node_modules

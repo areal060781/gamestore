@@ -7,7 +7,7 @@ from . import views
 urlpatterns = [
     path(r'', views.index, name='index'),
     path(r'accounts/login/', LoginView.as_view(template_name='login.html', authentication_form=AuthenticationForm), name='login'),
-    path(r'accounts/logout/', LogoutView.as_view(next_page='/'), name='logout')
+    path(r'accounts/logout/', LogoutView.as_view(next_page='/'), name='logout'),
     # path(r'accounts/login/', LoginView, {
     #     'template_name': 'login.html',
     #     'authentication_form': AuthenticationForm
@@ -15,4 +15,5 @@ urlpatterns = [
     # path(r'accounts/logout/', LogoutView, {
     #     'next_page': '/'
     # }, name='logout')
+    path(r'accounts/signup/', views.signup, name='signup')
 ]

@@ -42,3 +42,18 @@ class Game(models.Model):
 
     def __str__(self):
         return f'{self.gameplatform.name} - {self.name}'
+
+
+class PriceList(models.Model):
+    added_at = models.DateTimeField(auto_now_add=True)
+    last_update = models.DateTimeField(auto_now=True)
+    price_per_unit = models.DecimalField(max_digits=9, decimal_places=2, default=0)
+
+    game = models.OneToOneField(
+        Game,
+        on_delete=models.CASCADE,
+        primary_key=True
+    )
+
+    def __str__(self):
+        return self.game.name

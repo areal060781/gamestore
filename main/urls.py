@@ -17,5 +17,6 @@ urlpatterns = [
     # }, name='logout')
     path(r'accounts/signup/', views.signup, name='signup'),
     path(r'games-list/highlighted/', views.show_all_highlighted_games),
-    path(r'games-list/all/', views.show_all_games)
+    path(r'games-list/all/', views.show_all_games),
+    path(r'cart/', views.ShoppingCartEditView.as_view(), name='user-cart')
 ]

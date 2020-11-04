@@ -46,3 +46,20 @@ def signup(request):
         form = SignupForm()
 
     return render(request, 'main/signup.html', {'form': form})
+
+
+def show_all_highlighted_games(request):
+    games = Game.objects.all()
+
+    context = {'games': games}
+
+    return render(request, 'main/all_games.html', context)
+
+
+def show_all_games(request):
+    games = Game.objects.get_highlighted()
+
+    context = {'games': games}
+
+    return render(request, 'main/highlighted.html', context)
+

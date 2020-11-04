@@ -1,3 +1,8 @@
+from decimal import Decimal
+
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
@@ -99,3 +104,33 @@ class ShoppingCartEditView(UpdateView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(reverse_lazy('user-cart'))
+
+
+@login_required
+def add_to_cart(request, game_id):
+    game = get_object_or_404(Game, pk=game_id)
+    cart = ShoppingCart.objects.get_by_user(request.user)
+    existing_item = ShoppingCartItem.objects.get_existing_item(cart, game)
+
+    if existing_item is None:
+        price = (Decimal(0)
+                 if not hasattr(game, 'pricelist')
+                 else game.pricelist.price_per_unit)
+
+        new_item = ShoppingCartItem(
+            game=game,
+            quantity=1,
+            price_per_unit=price,
+            cart=cart
+        )
+        new_item.save()
+    else:
+        existing_item.quantity = F('quantity') + 1
+        existing_item.save()
+
+    messages.add_message(
+        request,
+        messages.INFO,
+        f'The game {game.name} has been added to your cart.')
+
+    return HttpResponseRedirect(reverse_lazy('user-cart'))

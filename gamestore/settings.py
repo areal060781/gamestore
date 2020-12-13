@@ -129,3 +129,6 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
+
+ORDER_SERVICE_AUTHTOKEN ='d3a3b5b0e77c3173782dcfa8b8a2c47ddc692b7e'
+ORDER_SERVICE_BASEURL = 'http://127.0.0.1:8001'

@@ -1,5 +1,6 @@
 .nav.navbar-nav .fa-home,
-.nav.navbar-nav .fa-shopping-cart {
+.nav.navbar-nav .fa-shopping-cart,
+.nav.navbar-nav .fa-truck {
  font-size: 1.5em;
 }
 
@@ -221,3 +222,10 @@ h2.panel-title {
     font-weight: bold;
     margin-left: 10px;
 }
+
+.order-container {
+    border: 1px solid #000;
+    margin: 20px;
+    padding: 10px;
+}
+
